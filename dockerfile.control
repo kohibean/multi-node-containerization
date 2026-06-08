@@ -1,5 +1,7 @@
 FROM ubuntu:22.04
 
 RUN apt-get update && apt-get install -y ansible openssh-client python3
-
+RUN mkdir -p /root/.ssh && chmod 700 /root/.ssh
+COPY keys/ansible_key /root/.ssh/id_rsa
+RUN chmod 600 /root/.ssh/id_rsa
 CMD ["tail", "-f", "/dev/null"]
