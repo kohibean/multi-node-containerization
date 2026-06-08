@@ -1,0 +1,5 @@
+FROM rockylinux:9
+
+RUN dnf install -y openssh-server sudo python3 \ ssh-keygen -A
+EXPOSE 22
+CMD ["/usr/sbin/sshd", "-D"]

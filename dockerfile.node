@@ -1,0 +1,10 @@
+FROM ubuntu:22.04
+
+RUN apt-get update && apt-get install -y openssh-server sudo python3
+RUN useradd -m -s /bin/bash -G sudo ansible
+
+RUN mkdir -p /home/ansible/.ssh \
+ && chmod 700 /home/ansible/.ssh \
+ && chown ansible:ansible /home/ansible/.ssh
+EXPOSE 22
+CMD ["/usr/sbin/sshd", "-D"]
